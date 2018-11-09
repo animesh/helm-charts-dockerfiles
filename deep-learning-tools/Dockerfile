@@ -119,3 +119,11 @@ RUN CC="cc -mavx2" pip install --no-cache-dir -I -U --force-reinstall \
 # Make Tensorflow default backend for keras
 RUN mkdir -p "$HOME/.keras" && \
     echo -e '{\n"image_data_format": "channels_last",\n"epsilon": 1e-07,\n"floatx": "float32",\n"backend": "tensorflow"\n}' > "$HOME/.keras/keras.json"
+
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+    echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+    apt update
+    apt install mono-devel
+
+RUN apt install  psmisc openssh-server libopenmpi-dev 
+
